@@ -1,0 +1,12 @@
+#Warning message:
+#In colnames(b3)[colnames(b3) %in% c("chromosome", "base_pair_location",  :
+  #number of items to replace is not a multiple of replacement length
+#b3的列名修改方式1
+colnames(b3)[ colnames(b3) %in% c('variant_id', 'chromosome',	'base_pair_location',	'other_allele','effect_allele',"n", "N_studies",	
+                                  	'effect_allele_frequency','beta',	'standard_error',	'p_value') ] 
+                  <- c('variant_id', 'chr.exposure',	'pos.exposure',	'other_allele.exposure','effect_allele.exposure',	"n", "N_studies",	
+                         'eaf.exposure',	'beta.exposure',	'se.exposure',	'pval.exposure')
+#b3的列名修改方式2
+names(b3)<-c('variant_id', 'chr.exposure',	'pos.exposure',	'other_allele.exposure','effect_allele.exposure',	"n", "N_studies",	
+                         'eaf.exposure',	'beta.exposure',	'se.exposure',	'pval.exposure')
+注意：从第一列开始不要搞错顺序
