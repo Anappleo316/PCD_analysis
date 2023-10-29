@@ -1,0 +1,36 @@
+多个图片合成一个PDF
+import os
+from PIL import Image
+
+file_name = input('需要转化的pdf名：')
+os.chdir('C:\\Users\\裘泽京\\Desktop\\pic')
+catalog = os.listdir()
+imgs = []  # 添加这行代码来创建一个空列表，用于存储图片对象
+
+for each in catalog:
+    extension = os.path.splitext(each)[1]
+    if extension == '.jpg':
+        img = Image.open(each)
+        img = img.convert('RGB')  # 修改这行代码，将Image.convert()改为img.convert()
+        imgs.append(img)
+
+img1 = imgs[0]
+imgs = imgs[1:]
+img1.save(f'{file_name}.pdf', 'PDF', resolution=100.0, save_all=True, append_images=imgs)
+
+一个图片一个pdf
+import os
+from PIL import Image
+
+folder_path = input('需要转化的jpg文件所在文件夹路径：')
+os.chdir(folder_path)
+catalog = os.listdir()
+
+for each in catalog:
+    if each.endswith('.jpg'):
+        file_name = os.path.splitext(each)[0]  # 获取jpg文件名（不包含扩展名）
+        img = Image.open(each)
+        img = img.convert('RGB')
+        pdf_file_name = f"{file_name}.pdf"  # 生成对应的pdf文件名
+
+        img.save(pdf_file_name, 'PDF', resolution=100.0)
